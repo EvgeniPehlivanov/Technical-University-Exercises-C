@@ -64,26 +64,9 @@ double travelGuide(int kmCount, char timeOfDay)
     taxiSum = 500;
   }
 
-  // Same here
-  if(trainSum < busSum)
-    {
-        if(busSum < taxiSum)
-            cheapest = trainSum;
-        else
-        {
-            if(trainSum < taxiSum)
-                cheapest = trainSum;
-            else
-                cheapest = taxiSum;
-        }
-    }
-  else
-    {
-        if(busSum<taxiSum)
-            cheapest = busSum;
-        else
-            cheapest = taxiSum;
-    }
+  cheapest = taxiSum;
+  if (busSum < cheapest) cheapest = busSum;
+  if (trainSum < cheapest) cheapest = trainSum;
     printf("Cheapest fare is: %.2f", cheapest);
 }
 
