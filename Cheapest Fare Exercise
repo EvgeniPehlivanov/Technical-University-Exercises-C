@@ -9,7 +9,6 @@ double travelGuide(int kmCount, char timeOfDay)
   float taxiSum = 0.70;
   float busSum = 1;
   float trainSum = 1;
-  float cheapest = 1;
 
   if (kmCount >= 100 )
   {
@@ -53,18 +52,18 @@ double travelGuide(int kmCount, char timeOfDay)
 // There's probably a better solution to this, but this does the job
   if(trainSum == 1)
   {
-    trainSum = 500;
+    trainSum = 100;
   }
    if(busSum == 1)
   {
-    busSum = 500;
+    busSum = 100;
   }
    if(taxiSum == 1)
   {
-    taxiSum = 500;
+    taxiSum = 100;
   }
 
-  cheapest = taxiSum;
+  float cheapest = taxiSum;
   if (busSum < cheapest) cheapest = busSum;
   if (trainSum < cheapest) cheapest = trainSum;
     printf("Cheapest fare is: %.2f", cheapest);
