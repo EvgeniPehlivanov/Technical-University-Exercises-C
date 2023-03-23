@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+
+// Create a program which calculates the cheapest route someone can take depending on the distance and time of day
+double travelGuide(int kmCount, char timeOfDay)
+{
+  float taxiSum = 0.70;
+  float busSum = 1;
+  float trainSum = 1;
+  float cheapest = 1;
+
+  if (kmCount >= 100 )
+  {
+    trainSum = kmCount * 0.06;
+    busSum = kmCount * 0.09;
+     if (timeOfDay == 'd')
+    {
+      taxiSum += kmCount * 0.79;
+    }
+    else
+    {
+      taxiSum += kmCount * 0.90;
+    }
+  }
+  else if (kmCount >= 20)
+  {
+    printf("Can't use train becasue travel distance is less than 100km! \n");
+    busSum = kmCount * 0.09;
+     if (timeOfDay == 'D')
+    {
+      taxiSum += kmCount * 0.79;
+    }
+    else
+    {
+      taxiSum += kmCount * 0.90;
+    }
+  }
+  else
+  {
+    printf("Can't use bus becasue travel distance is less than 20km! \n");
+    if (timeOfDay == 'D')
+    {
+      taxiSum += kmCount * 0.79;
+    }
+    else
+    {
+      taxiSum += kmCount * 0.90;
+    }
+  }
+
+// There's probably a better solution to this, but this does the job
+  if(trainSum == 1)
+  {
+    trainSum = 500;
+  }
+   if(busSum == 1)
+  {
+    busSum = 500;
+  }
+   if(taxiSum == 1)
+  {
+    taxiSum = 500;
+  }
+
+  // Same here
+  if(trainSum < busSum)
+    {
+        if(busSum < taxiSum)
+            cheapest = trainSum;
+        else
+        {
+            if(trainSum < taxiSum)
+                cheapest = trainSum;
+            else
+                cheapest = taxiSum;
+        }
+    }
+  else
+    {
+        if(busSum<taxiSum)
+            cheapest = busSum;
+        else
+            cheapest = taxiSum;
+    }
+    printf("Cheapest fare is: %.2f", cheapest);
+}
+
+
+int main()
+{
+  int kmCount = 0;
+  char timeOfDay;
+    printf("Enter distance and time of day: \n");
+    scanf("%d %c", &kmCount, &timeOfDay);
+    travelGuide(kmCount, timeOfDay);
+    return 0;
+}  
